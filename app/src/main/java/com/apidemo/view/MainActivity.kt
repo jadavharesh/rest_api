@@ -3,6 +3,7 @@ package com.apidemo.view
 import android.graphics.drawable.GradientDrawable.Orientation
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -50,6 +51,18 @@ class MainActivity : AppCompatActivity() {
            {
                adapterList.addData(it)
            }
+        })
+
+        viewModel.progressVisible.observe(this, Observer {
+            if(it)
+            {
+                binding.progress.visibility = View.VISIBLE
+                binding.rvUniversity.visibility = View.GONE
+            }else
+            {
+                binding.progress.visibility = View.GONE
+                binding.rvUniversity.visibility = View.VISIBLE
+            }
         })
     }
 }
